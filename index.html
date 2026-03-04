@@ -562,8 +562,15 @@
     document.getElementById('addAnother').addEventListener('click', showForm);
 
     // ── Recent Reads ──
-    const V = '16'; // bump to bust cache
+    const V = '17'; // bump to bust cache
     const READS = [
+      {
+        name: "Satya Nadella",
+        role: "CEO of Microsoft",
+        image: "img/satya.jpg",
+        notesUrl: "https://x.com/AnishA_Moonka/status/2028942905675792765",
+        podcastUrl: "https://www.youtube.com/watch?v=L2OPYYthw4c"
+      },
       {
         name: "Brian Cox",
         role: "Physicist & Science Communicator",
@@ -655,12 +662,6 @@
         role: "Co-founder of a16z",
         image: "img/benhorowitz.jpg",
         podcastUrl: "https://www.youtube.com/watch?v=dFT4xj57D7U"
-      },
-      {
-        name: "Satya Nadella",
-        role: "CEO of Microsoft",
-        image: "img/satya.jpg",
-        podcastUrl: "https://www.youtube.com/watch?v=L2OPYYthw4c"
       },
     ];
 
