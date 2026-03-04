@@ -562,8 +562,15 @@
     document.getElementById('addAnother').addEventListener('click', showForm);
 
     // ── Recent Reads ──
-    const V = '17'; // bump to bust cache
+    const V = '18'; // bump to bust cache
     const READS = [
+      {
+        name: "Demis Hassabis",
+        role: "Co-founder of Google DeepMind",
+        image: "img/demis.jpg",
+        notesUrl: "https://x.com/AnishA_Moonka/status/2029263417077580075",
+        podcastUrl: "https://www.youtube.com/watch?v=-HzgcbRXUK8"
+      },
       {
         name: "Satya Nadella",
         role: "CEO of Microsoft",
@@ -651,12 +658,6 @@
     ];
 
     const COMING_SOON = [
-      {
-        name: "Demis Hassabis",
-        role: "Co-founder of Google DeepMind",
-        image: "img/demis.jpg",
-        podcastUrl: "https://www.youtube.com/watch?v=-HzgcbRXUK8"
-      },
       {
         name: "Ben Horowitz",
         role: "Co-founder of a16z",
