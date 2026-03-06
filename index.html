@@ -562,8 +562,15 @@
     document.getElementById('addAnother').addEventListener('click', showForm);
 
     // ── Recent Reads ──
-    const V = '20'; // bump to bust cache
+    const V = '21'; // bump to bust cache
     const READS = [
+      {
+        name: "Boris Cherny",
+        role: "Head of Claude Code, Anthropic",
+        image: "img/boris.jpg",
+        notesUrl: "https://x.com/AnishA_Moonka/status/2030015356383691121",
+        podcastUrl: "https://www.youtube.com/watch?v=We7BZVKbCVw"
+      },
       {
         name: "Andrej Karpathy",
         role: "Founder of Eureka Labs",
@@ -665,12 +672,6 @@
     ];
 
     const COMING_SOON = [
-      {
-        name: "Boris Cherny",
-        role: "Head of Claude Code, Anthropic",
-        image: "img/boris.jpg",
-        podcastUrl: "https://www.youtube.com/watch?v=We7BZVKbCVw"
-      },
       {
         name: "Dan Sundheim",
         role: "Founder of D1 Capital Partners",
