@@ -562,8 +562,15 @@
     document.getElementById('addAnother').addEventListener('click', showForm);
 
     // ── Recent Reads ──
-    const V = '21'; // bump to bust cache
+    const V = '22'; // bump to bust cache
     const READS = [
+      {
+        name: "Dan Sundheim",
+        role: "Founder of D1 Capital Partners",
+        image: "img/sundheim.jpg",
+        notesUrl: "https://x.com/AnishA_Moonka/status/2030370394088284227",
+        podcastUrl: "https://www.youtube.com/watch?v=mBtmTmCC0ZM"
+      },
       {
         name: "Boris Cherny",
         role: "Head of Claude Code, Anthropic",
@@ -672,12 +679,6 @@
     ];
 
     const COMING_SOON = [
-      {
-        name: "Dan Sundheim",
-        role: "Founder of D1 Capital Partners",
-        image: "img/sundheim.jpg",
-        podcastUrl: "https://www.youtube.com/watch?v=mBtmTmCC0ZM"
-      },
       {
         name: "Ben Horowitz",
         role: "Co-founder of a16z",
