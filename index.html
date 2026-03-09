@@ -366,6 +366,101 @@
       margin-bottom: 0.4rem;
     }
 
+    /* ── List view for Recent Reads ── */
+    .reads-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      width: 100%;
+    }
+
+    .list-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--border);
+      opacity: 0;
+      animation: fadeUp 0.4s ease-out both;
+      transition: background 0.2s;
+    }
+
+    .list-item:first-child { border-top: 1px solid var(--border); }
+
+    .list-item:hover { background: rgba(255,255,255,0.02); }
+
+    .list-info {
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+      min-width: 0;
+      flex: 1;
+    }
+
+    .list-name {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #fff;
+      line-height: 1.3;
+    }
+
+    .list-role {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      line-height: 1.3;
+    }
+
+    .list-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex-shrink: 0;
+      margin-left: 1rem;
+    }
+
+    .list-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      padding: 0.4rem 0.75rem;
+      border-radius: 6px;
+      font-family: inherit;
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-decoration: none;
+      white-space: nowrap;
+      background: linear-gradient(135deg, #f97316, #ef4444, #ec4899);
+      color: #fff;
+      border: none;
+      transition: opacity 0.2s, transform 0.15s;
+    }
+
+    .list-btn:hover {
+      opacity: 0.9;
+      transform: translateY(-1px);
+    }
+
+    .list-btn svg { width: 10px; height: 10px; fill: currentColor; }
+
+    .list-source {
+      font-size: 0.65rem;
+      color: var(--text-dim);
+      text-decoration: none;
+      transition: color 0.2s;
+      white-space: nowrap;
+    }
+
+    .list-source:hover { color: var(--text-muted); }
+
+    @media (max-width: 420px) {
+      .list-item { padding: 0.85rem 0; }
+      .list-name { font-size: 0.85rem; }
+      .list-role { font-size: 0.7rem; }
+      .list-btn { font-size: 0.65rem; padding: 0.35rem 0.6rem; }
+      .list-source { font-size: 0.58rem; }
+      .list-actions { gap: 0.5rem; margin-left: 0.75rem; }
+    }
+
     /* Show more toggle */
     .toggle-btn {
       display: none;
@@ -508,7 +603,7 @@
         <div class="section-title">Recent reads</div>
         <div class="section-subtitle">Content we've summarised so far</div>
       </div>
-      <div class="grid" id="readsGrid"></div>
+      <div class="reads-list" id="readsList"></div>
       <button class="toggle-btn" id="readsToggle"></button>
     </section>
 
@@ -587,7 +682,7 @@
     document.getElementById('addAnother').addEventListener('click', showForm);
 
     // ── Recent Reads ──
-    const V = '23'; // bump to bust cache
+    const V = '24'; // bump to bust cache
     const READS = [
       {
         name: "Dan Sundheim",
@@ -715,29 +810,30 @@
     const VISIBLE_COUNT = 4;
     let showingAll = false;
 
-    function renderCard(read, index) {
-      const delay = 0.5 + index * 0.1;
+    function renderListItem(read, index) {
+      const delay = 0.3 + index * 0.06;
       return `
-        <div class="card" style="animation-delay: ${delay}s">
-          <img src="${read.image}?v=${V}" alt="${read.name}" loading="lazy">
-          <div class="card-overlay">
-            <div class="card-name">${read.name}</div>
-            <div class="card-role">${read.role}</div>
-            <a class="card-btn" href="${read.notesUrl}" target="_blank" rel="noopener">
+        <div class="list-item" style="animation-delay: ${delay}s">
+          <div class="list-info">
+            <div class="list-name">${read.name}</div>
+            <div class="list-role">${read.role}</div>
+          </div>
+          <div class="list-actions">
+            <a class="list-source" href="${read.sourceUrl}" target="_blank" rel="noopener">Source &rarr;</a>
+            <a class="list-btn" href="${read.notesUrl}" target="_blank" rel="noopener">
               <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
-              Read our notes
+              Read
             </a>
-            <a class="card-link" href="${read.sourceUrl}" target="_blank" rel="noopener">Original source &rarr;</a>
           </div>
         </div>`;
     }
 
     function renderReads() {
-      const grid = document.getElementById('readsGrid');
+      const list = document.getElementById('readsList');
       const toggle = document.getElementById('readsToggle');
       const visible = showingAll ? READS : READS.slice(0, VISIBLE_COUNT);
 
-      grid.innerHTML = visible.map((r, i) => renderCard(r, i)).join('');
+      list.innerHTML = visible.map((r, i) => renderListItem(r, i)).join('');
 
       if (READS.length > VISIBLE_COUNT) {
         toggle.style.display = 'block';
